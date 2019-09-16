@@ -1,0 +1,58 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Configprivate/index')}">设置</a></li>
+			<li  class="active"><a href="{:U('Configprivate/lists')}">管理</a></li>
+			<li><a href="{:U('Configprivate/add')}">添加</a></li>
+		</ul>
+		<form method="post" class="js-ajax-form" action="{:U('Configprivate/listorders')}">
+		<div class="table-actions">
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit">{:L('SORT')}</button>
+			</div>
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					 <th>排序</th>
+					<th width="50">ID</th>
+					<th>字段</th>
+					<th>名称</th>
+					<th>数据类型</th>
+
+					<th width="120">{:L('ACTIONS')}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<php>$user_statuses=array("num"=>'数字',"string"=>'字符串',"textarea"=>'文本框',"datetime"=>'时间',"select"=>'枚举',"radio"=>'单选',"checkbox"=>'多选',"bool"=>'布尔',"picture"=>'上传图片',"editor"=>'编辑器');</php>
+				<foreach name="lists" item="vo">
+					<if condition="$vo['name'] neq 'lotterybase' && $vo['name'] neq 'pub_msg'" >
+				<tr>
+					 <td><input name="listorders[{$vo['id']}]" type="text" size="3" value="{$vo['orderno']}" class="input input-order"></td>
+					<td>{$vo.id}</td>
+					<td>{$vo.name}</td>
+					<td>{$vo.title}</td>
+					<td>{$user_statuses[$vo['type']]}</td>
+					<td>
+							<a href='{:U("Configprivate/edit",array("id"=>$vo["id"]))}'>{:L('EDIT')}</a> | 
+							<a class="js-ajax-delete" href="{:U('Configprivate/delete',array('id'=>$vo['id']))}">{:L('DELETE')}</a> |
+							<if condition="$vo['state'] eq '0'" >
+								<a href="{:U('Configprivate/state_hide',array('id'=>$vo['id']))}" class="js-ajax-dialog-btn" data-msg="您确定要隐藏吗？">隐藏</a>
+							<else/>
+								<a href="{:U('Configprivate/state_display',array('id'=>$vo['id']))}" class="js-ajax-dialog-btn" data-msg="您确定要显示吗？">显示</a>
+							</if>
+					</td>
+				</tr>
+					</if>
+				</foreach>
+			</tbody>
+		</table>
+		<div class="pagination">{$page}</div>
+		<div class="table-actions">
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit">{:L('SORT')}</button>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

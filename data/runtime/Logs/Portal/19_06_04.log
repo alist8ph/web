@@ -1,0 +1,9 @@
+[ 2019-06-04T10:49:52+08:00 ] ::1 /
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'dsppojie'@'localhost' (using password: YES)
+
+[ 2019-06-04T10:59:01+08:00 ] ::1 /index.php?g=Portal&m=AdminPost&a=index&menuid=7
+NOTIC: D方法实例化没找到模型类Portal\Model\PostsModel
+
+[ 2019-06-04T10:59:05+08:00 ] ::1 /index.php?g=Portal&m=AdminPage&a=index&menuid=25
+NOTIC: D方法实例化没找到模型类Common\Model\PostsModel
+

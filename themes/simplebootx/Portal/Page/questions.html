@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>常见问题</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta content="telephone=no" name="format-detection" />
+<!-- Set render engine for 360 browser -->
+<meta name="renderer" content="webkit">
+
+<!-- No Baidu Siteapp-->
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<link href="__TMPL__Public/css/page.css?t={$time}" rel="stylesheet">
+</head>
+<style>
+body{
+ background:#110D24;
+ color:#FFF;
+}
+p{
+	color: #FFF;
+}
+.news_content .news_bd{
+	margin:0;
+}
+</style>
+<body class="body-white">
+	<div class="container tc-main">	
+	   <ul class="questionList">
+	   	<volist name="questionList" id="vo">
+	   		<a href="/index.php?g=portal&m=page&a=news&id={$vo['id']}">
+	   			<li>{$vo['post_title']}</li>
+	   		</a>
+	   	</volist>
+	   </ul>
+		 
+	</div>
+	<!-- /container -->
+</body>
+</html>

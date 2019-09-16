@@ -1,0 +1,146 @@
+<admintpl file="header" />
+</head>
+<body>
+<style>
+input{
+  width:500px;
+}
+.form-horizontal textarea{
+ width:500px;
+}
+</style>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+	<script type="text/javascript">
+		//编辑器路径定义
+		var editorURL = GV.DIMAUB;
+	</script>
+	<script type="text/javascript" src="__PUBLIC__/js/ueditor/ueditor.config.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/ueditor/ueditor.all.min.js"></script>	
+
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('Config/index')}">设置</a></li>
+			<li><a href="{:U('Config/lists')}">管理</a></li>
+			<li><a href="{:U('Config/add')}">添加</a></li>
+		</ul>
+		<div class="form-actions">
+			     <span style="color:#ff0000">提示：新加设置请清空下缓存！配置信息修改后 1分钟后生效</span>
+			</div>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('Config/set_post')}">
+		  <input type="hidden" name="post['id']" value="1">
+			<fieldset>
+			  <volist name="attribute" id="vo">
+						<if condition="$vo['name'] neq 'lotterybase' && $vo['name'] neq 'pub_msg' && $vo['state'] neq '1'" >
+							<div class="control-group">
+								<label class="control-label">{$vo['title']}</label>
+								<div class="controls">				
+										<switch name="vo['type']">
+										
+										  <case value="num">
+												<input type="text" name="post[{$vo['name']}]" value="{$config[$vo['name']]}" > {$vo['remark']}
+											</case>
+											<case value="string">
+													<input type="text" name="post[{$vo['name']}]" value="{$config[$vo['name']]}" > {$vo['remark']}
+											</case>
+											<case value="textarea">
+												
+													<textarea name="post[{$vo['name']}]">{$config[$vo['name']]}</textarea>{$vo['remark']}
+												
+											</case>
+											<case value="datetime">
+													<input type="text" name="post[{$vo['name']}]" class="text input-large time" value="{$config[$vo['name']]}" placeholder="请选择时间" />{$vo['remark']}
+											</case>
+											<case value="bool">
+													<select name="post[{$vo['name']}]">
+															<volist name="vo.list" id="vo2">
+																	<option value="{$key}" <eq name="config[$vo['name']]" value="$key">selected</eq>>{$vo2}</option>
+															</volist>
+													</select> {$vo['remark']}
+											</case>
+											<case value="select">
+													<select name="post[{$vo['name']}]">
+															<volist name="vo.list" id="vo2">
+																	<option value="{$key}" <eq name="config[$vo['name']]" value="$key">selected</eq>>{$vo2}</option>
+															</volist>
+													</select> {$vo['remark']}
+											</case>
+											<case value="radio">
+												<volist name="vo.list" id="vo2">
+														<label class="radio inline">
+															<input type="radio" value="{$key}" name="post[{$vo['name']}]" <eq name="config[$vo['name']]" value="$key">checked="checked"</eq>>{$vo2}
+														</label>
+													</volist>
+													 <label class="checkbox inline">
+														{$vo['remark']}
+													</label>
+											</case>
+											<case value="checkbox">
+													<volist name="vo.list" id="vo2">
+														<label class="checkbox inline">
+															<input type="checkbox" value="{$key}" name="post[{$vo['name']}][]" <in name="key" value="$config[$vo['name']]" >checked="checked"</in>>{$vo2}
+														</label>
+													</volist>
+													<label class="checkbox inline">
+														{$vo['remark']}
+													</label>
+											</case>											
+											<case value="editor">
+												<script type="text/plain" id="{$vo['name']}" name="post[{$vo['name']}]">{$config[$vo['name']]}</script> {$vo['remark']}
+												<script type="text/javascript">
+													$(function() {
+															//编辑器
+															editorcontent_{$vo['name']}= new baidu.editor.ui.Editor();								
+															editorcontent_{$vo['name']}.render("{$vo['name']}");
+															try {
+																editorcontent_{$vo['name']}.sync();
+															} catch (err) {}
+													});
+												</script>	
+											</case>
+											<case value="picture">
+														<div >
+															<input type="hidden" name="post[{$vo['name']}]" id="{$vo['name']}" value="{$gift['gifticon']}">
+															<a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','{$vo['name']}',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+																	<if condition="$config[$vo['name']] neq ''">
+																				<img src="{$config[$vo['name']]}" id="{$vo['name']}_preview" width="135" style="cursor: hand" />
+																		<else/>
+																				<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="{$vo['name']}_preview" width="135" style="cursor: hand" />
+																		</if>
+															</a>
+															<input type="button" class="btn btn-small" onclick="$('#{$vo['name']}_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#{$vo['name']}').val('');return false;" value="取消图片">
+														</div>
+														{$vo['remark']}
+														<span class="form-required"></span>												
+											</case>
+											<default/>
+												
+														<input type="text" name="post[{$vo['name']}]" value="{$config[$vo['name']]}" > {$vo['remark']}
+																		
+
+										</switch>
+								</div>
+							</div>
+						</if>
+        </volist>
+			</fieldset>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
+				<a class="btn" href="{:U('user/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+							<script type="text/javascript">
+								$(function() {
+										//增加编辑器验证规则
+										jQuery.validator.addMethod('editorcontent',function() {
+											try {
+												editorcontent.sync();
+											} catch (err) {}
+											return editorcontent.hasContents();
+										});
+								////-------------------------
+								});
+							</script>	
+</body>
+</html>

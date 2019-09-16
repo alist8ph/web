@@ -1,0 +1,157 @@
+﻿<admintpl file="header"/>
+<style>
+ .controls img{
+     max-width:200px;
+ }
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#">编辑</a></li>
+		</ul>
+		<form class="form-horizontal js-ajax-form" action="{:U('indexadmin/edit_post')}" method="post">
+			<fieldset>
+			   <input type="hidden" name="id" value="{$userinfo['id']}" id="id"/>
+				<div class="control-group">
+					<label class="control-label">用户名</label>
+					<div class="controls">
+						<input type="text" name="user_login" value="{$userinfo['user_login']}" id="user_login" readonly/>
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">昵称</label>
+					<div class="controls">
+						<input type="text" name="user_nicename" value="{$userinfo['user_nicename']}" id="user_nicename" maxlength="8"/>
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				
+				
+				<!-- <div class="control-group">
+					<label class="control-label">邀请码</label>
+					<div class="controls">
+						<input type="text" name="code" value="{$userinfo['code']}" id="code" readonly/>  <input type="button" id="setcode" value="获取邀请码"  class="btn">
+						<span class="form-required">*</span>
+					</div>
+				</div> -->
+				<!-- <div class="control-group">
+					<label class="control-label">生日</label>
+					<div class="controls">
+						<input type="text" name="birthday" value="{$userinfo['birthday']}" id="birthday" class="js-date date" value=""  autocomplete="off">
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">年龄</label>
+					<div class="controls">
+						<input type="text" name="age" value="{$userinfo['age']}" id="age"/>
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">QQ号</label>
+					<div class="controls">
+						<input type="text" name="qqnum" value="{$userinfo['qqnum']}" id="qqnum"/>
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">籍贯</label>
+					<div class="controls">
+						<input type="text" name="hometown" value="{$userinfo['hometown']}" id="hometown"/>
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">现居住地</label>
+					<div class="controls">
+						<input type="text" name="nowaddress" value="{$userinfo['nowaddress']}" id="nowaddress"/>
+						<span class="form-required">*</span>
+					</div>
+				</div> -->
+				<!-- <div class="control-group">
+					<label class="control-label">头像/封面</label>
+					<div class="controls">
+								<div >
+									<input type="hidden" name="avatar" id="thumb" value="{$userinfo['avatar']}">
+									<a href="javascript:void(0);" onclick="flashuploadcut('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+									  <if condition="$userinfo['avatar'] neq ''">
+												<img src="{$userinfo['avatar']}" id="thumb_preview" width="135" style="cursor: hand" />
+										<else/>
+										    <img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand" />
+										</if>
+									</a>
+									<input type="button" class="btn btn-small" onclick="$('#thumb_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
+								</div>
+						<span class="form-required"></span>
+					</div>
+				</div> -->
+				<div class="control-group">
+					<label class="control-label">头像/封面</label>
+					<div class="controls">
+								<div >
+									<input type="hidden" name="avatar" id="thumb" value="{$userinfo['avatar']}">
+									<a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+									  <if condition="$userinfo['avatar'] neq ''">
+												<img src="{$userinfo['avatar']}" id="thumb_preview" width="135" style="cursor: hand" />
+										<else/>
+										    <img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand" />
+										</if>
+									</a>
+									<input type="button" class="btn btn-small" onclick="$('#thumb_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
+								</div>
+						<span class="form-required"></span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">性别</label>
+					<div class="controls">
+						<label class="radio inline" for="sex_1"><input type="radio" name="sex" value="1" id="sex_1" <if condition="$userinfo['sex'] eq '1'">checked</if> />男</label>
+						<label class="radio inline" for="sex_2"><input type="radio" name="sex" value="2" id="sex_2" <if condition="$userinfo['sex'] eq '2'">checked</if> >女</label>
+					</div>
+				</div>								
+				
+				<div class="control-group">
+					<label class="control-label">个性签名</label>
+					<div class="controls">
+						<textarea name="signature" rows="2" cols="20" id="signature" class="inputtext" style="height: 100px; width: 500px;">{$userinfo['signature']}</textarea>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">{:L('STATUS')}</label>
+					<div class="controls">
+						<label class="radio inline" for="active_true"><input type="radio" name="user_status" value="1" <if condition="$userinfo['user_status'] eq '1'">checked</if> id="active_true" />{:L('ENABLED')}</label>
+						<label class="radio inline" for="active_false"><input type="radio" name="user_status" value="0" <if condition="$userinfo['user_status'] eq '0'">checked</if> id="active_false">{:L('DISABLED')}</label>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">编辑</button>
+				<a class="btn" href="{:U('indexadmin/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+	<script>
+	 (function(){
+		$("#setcode").on("click",function(){
+			$.ajax({
+				url:'/index.php?g=User&m=indexadmin&a=createCode',
+				data:{},
+				type:'post',
+				dataType:'json',
+				success:function(data){
+					$("#code").val(data.info);
+				},
+				error:function(){
+					alert("获取失败");
+				}
+			})
+		})
+	 })()
+	</script>
+</body>
+</html>

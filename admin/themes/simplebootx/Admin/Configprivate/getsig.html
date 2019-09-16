@@ -1,0 +1,27 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Configprivate/index')}">设置</a></li>
+			<li><a href="{:U('Configprivate/lists')}">管理</a></li>
+			<li><a href="{:U('Configprivate/add')}">新增</a></li>
+			<li class="active"><a >获取签名</a></li>
+		</ul>
+
+				<div class="control-group">
+					<label class="control-label">签名</label>
+					<div class="controls">
+						<textarea name="extra" style="height:300px;width:655px; resize:none" readonly>{$sig}</textarea> 
+					</div>
+				</div>
+
+
+			</fieldset>
+			<div class="form-actions">
+				<a class="btn" href="{:U('Configprivate/index')}">{:L('BACK')}</a>
+			</div>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[ 2019-07-23T12:36:56+08:00 ] 127.0.0.1 /index.php?g=Admin&m=public&a=dologin
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.008001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011001s ]
+SQL: SHOW COLUMNS FROM `cmf_users` [ RunTime:0.0320s ]
+SQL: SELECT * FROM `cmf_users` WHERE `user_login` = 'admin' LIMIT 1   [ RunTime:0.0610s ]
+SQL: SHOW COLUMNS FROM `cmf_role_user` [ RunTime:0.0290s ]
+SQL: SELECT `role_id` FROM cmf_role_user a INNER JOIN cmf_role as b on a.role_id =b.id  WHERE `user_id` = '1' AND `status` = 1  [ RunTime:0.0270s ]
+SQL: UPDATE `cmf_users` SET `user_login`='admin',`user_pass`='###6963dde0cef4c0ed79a79508f89a7c44',`user_nicename`='admin',`user_email`='admin@qq.com',`user_url`='http://dsppojie.yunbaozhibo.com',`avatar`='',`avatar_thumb`='',`sex`='0',`age`='0',`birthday`='',`signature`='',`last_login_ip`='127.0.0.1',`last_login_time`='2019-07-23 12:36:56',`create_time`='2016-03-07 08:47:52',`user_activation_key`='',`user_status`='1',`score`='0',`user_type`='1',`coin`='0',`mobile`='',`token`='03e705532437f028c66387607f660ec9',`expiretime`='1522162191',`weixin`='',`consumption`='0',`votes`='0.00',`votestotal`='0',`province`='',`city`='',`area`='',`isrecommend`='0',`openid`='',`login_type`='phone',`iszombie`='0',`isrecord`='0',`iszombiep`='0',`issuper`='0',`ishot`='1',`isauth`='0',`bonus_day`='0',`bonus_time`='0',`goodnum`='0',`code`='',`divide_family`='0' WHERE `id` = '1' [ RunTime:0.0300s ]
+
+[ 2019-07-23T12:37:15+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=index&menuid=100
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
