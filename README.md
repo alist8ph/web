@@ -15,6 +15,8 @@
 
 短视频直播源码研究交流①群：[638995316](https://jq.qq.com/?_wv=1027&k=57WmxZq)
 
+[![IOS源码编译功能展示](https://vthumb.ykimg.com/054106015D7C43F00000013BC7057A2F)](https://v.youku.com/v_show/id_XNDM2MDc3NjM4OA==.html?spm=a2h3j.8428770.3416059.1 "IOS源码编译功能展示")
+
 #### 第三方云服务
 
 OSS存储：七牛
